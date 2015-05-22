@@ -1,6 +1,7 @@
 /*
 * "GreenSock | TweenMax"(http://greensock.com/tweenmax) with jQuery.
 * by @psyonline (http://www.psyonline.kr/, majorartist@gmail.com)
+* License - http://creativecommons.org/licenses/by-sa/2.0/kr/
 */
 
 /*
