@@ -1,6 +1,7 @@
 /*
 * "GreenSock | TweenMax"(http://greensock.com/tweenmax) with jQuery.
 * by @psyonline (http://www.psyonline.kr/, majorartist@gmail.com)
+* https://github.com/psyonline/jquery-with-gsap
 * License - http://creativecommons.org/licenses/by-sa/2.0/kr/
 */
 
@@ -16,6 +17,7 @@
 			$()._animate(properties, duration, complete);
 			$()._animate(properties, easing, complete);
 			$()._animate(properties, duration, easing, complete);
+		* 위 함수가 실행되면 해당 jQuery 객체에 .data('TweenMax', TweenMax 객체)가 지정됨
 
 	* ._css(properties [, value]) 함수
 		- .css() 함수와 사용 방법 동일. 추가된 속성은 하단 참조
@@ -60,11 +62,14 @@
 		- .ratio: 전체 범위에 대한 현재 값의 비율(float, 0~1)
 
 */
+
+
  (function($){
 
  	var isobject = $.isPlainObject,
  		cssplugingettransform = CSSPlugin._internals.getTransform,
- 		transformProperties = 'scale,scaleX,scaleY,scaleZ,x,y,z,skewX,skewY,rotation,rotationX,rotationY,rotationZ,perspective,xPercent,yPercent,zOrigin,';
+ 		transformProperties = 'scale,scaleX,scaleY,scaleZ,x,y,z,skewX,skewY,rotation,rotationX,rotationY,rotationZ,perspective,xPercent,yPercent,zOrigin,',
+ 		eventParam = ['{self}'];
 
 
  	$.fn._css = function(property, value) {
@@ -155,23 +160,23 @@
 		// events
 		if (options.start) {
 			options.onStart = createcallback(elements, options.start);
-			options.onStartParams = ['{self}'];
+			options.onStartParams = eventParam;
 			delete options.start;
 		}
 		if (options.step || options.progress) {
 			options.onUpdate = createcallback(elements, options.step || options.progress);
-			options.onUpdateParams = ['{self}'];
+			options.onUpdateParams = eventParam;
 			delete options.step;
 			delete options.progress;
 		}
 		if (options.repeatStep) {
 			options.onRepeat = createcallback(elements, options.repeatStep);
-			options.onRepeatParams = ['{self}'];
+			options.onRepeatParams = eventParam;
 			delete options.repeatStep;
 		}
 		if (options.complete) {
 			options.onComplete = createcallback(elements, options.complete);
-			options.onCompleteParams = ['{self}'];
+			options.onCompleteParams = eventParam;
 			delete options.complete;
 		}
 		
