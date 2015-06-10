@@ -64,7 +64,7 @@
 */
 
 
- (function($){
+(function($){
 
  	var isobject = $.isPlainObject,
  		cssplugingettransform = CSSPlugin._internals.getTransform,
@@ -103,7 +103,6 @@
  		tm && tm.kill(vars, target);
  		return this;
  	}
-
 
  	function gettransform(element, property) {
  		var gsTransform = element._gsTransform || cssplugingettransform(element);
@@ -200,5 +199,33 @@
 	function istransform(property) {
 		return transformProperties.indexOf(property +',') !== -1;
 	}
+
+	// Add easing functions to jquery
+	// Based on "GreenSock | jquery.gsap.js"(http://greensock.com/jquery-gsap-plugin)
+ 	(function() {
+
+		var names, types, map, name, i, j;
+
+ 		if ($.easing && window.GreenSockGlobals && window.GreenSockGlobals.Ease && window.GreenSockGlobals.Ease.map) {
+			names = 'Quad, Cubic, Quart, Quint, Sine, Expo, Circ, Elastic, Back, Bounce'.split(', ');
+			types = 'In, Out, InOut'.split(', ');
+ 			map = window.GreenSockGlobals.Ease.map;
+ 			for (i = 0; i < names.length; i++) {
+ 				for (j = 0; j < types.length; j++) {
+ 					name = 'ease'+ types[j] + names[i];
+ 					if (map[name] && !$.easing[name]) {
+ 						$.easing[name] = createEase(map[name]);
+ 					}
+ 				}
+ 			}
+ 		}
+
+ 		function createEase(ease) {
+			return function(p) {
+				return ease.getRatio(p);
+			}
+		}
+
+	})();
 
  })(window.jQuery);
