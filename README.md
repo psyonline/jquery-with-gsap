@@ -1,5 +1,5 @@
 # jquery-with-gsap
----
+----
 
 Extend jQuery to work with "GreenSock | TweenMax"(<http://greensock.com/tweenmax>).
 
@@ -8,4 +8,5 @@ Extend jQuery to work with "GreenSock | TweenMax"(<http://greensock.com/tweenmax
 - $()._stop([vars] [, target]);
 - $()._css(properties [, value]);
 
-* Add TweenMax's easings to jQuery.easing.
+
+*Add TweenMax's easings to jQuery.easing.
