@@ -1,5 +1,4 @@
 # jquery-with-gsap
--
 
 Extend jQuery to work with "GreenSock | TweenMax"(<http://greensock.com/tweenmax>).
 
